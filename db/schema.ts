@@ -1,0 +1,3 @@
+import {sqliteTable,text,integer,index} from 'drizzle-orm/sqlite-core';
+export const players=sqliteTable('players',{id:text('id').primaryKey(),name:text('name').notNull().default('Racer'),coins:integer('coins').notNull().default(0),best:integer('best').notNull().default(0),garage:text('garage').notNull().default('{"owned":["rookie"],"upgrades":{}}'),missions:text('missions').notNull().default('[]')},t=>[index('idx_players_best').on(t.best)]);
+export const runs=sqliteTable('runs',{id:text('id').primaryKey(),playerId:text('player_id').notNull(),started:integer('started').notNull(),finished:integer('finished'),score:integer('score'),car:text('car').notNull(),track:text('track').notNull()});
